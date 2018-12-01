@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="dynamic_xls_report_tree" model="ir.ui.view">
+        <field name="name">Dynamic Reports</field>
+        <field name="model">dynamic.xls.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="model_name"/>
+                <field name="limit_rec"/>
+                <field name="order_type"/>
+                <field name="sheet_name"/>
+                <field name="order_on_field"/>
+                <field name="set_offset"/>
+                <field name="sheet_name"/>
+                <field name="header_text"/>
+                <field name="domain_lines"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="dynamic_xls_report_form" model="ir.ui.view">
+        <field name="name">Dynamic Reports</field>
+        <field name="model">dynamic.xls.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                <group col="2">
+                    <group col="2">
+                        <field name="model_name" required="1"/>
+                        <!--<field name="search_domain" invisible="1"/>-->
+                        <field name="limit_rec"/>
+                        <field name="order_type"/>
+                        <field name="set_offset"/>
+                    </group>
+                    <group col="2">
+                        <field name="order_on_field"/>
+                        <!--<field name="set_offset" />-->
+                        <field name="m2m_value"/>
+                        <field name="sheet_name"/>
+                        <field name="header_text"/>
+                    </group>
+                </group>
+                <group colspan="6">
+                    <field name="file_name" invisible="1"/>
+                    <field name="file_data" filename="filename" attrs="{'invisible':[('file_data','=',False)]}"/>
+                </group>
+                <group colspan="6">
+                    <notebook>
+                        <page string="Select Fields">
+                            <field name="field_name" domain="[('model_id','=',model_name)]" nolabel="1"/>
+                        </page>
+                        <page string="Domain Lines">
+                            <field name="domain_lines" nolabel="1">
+                                <tree editable="top">
+                                    <field name="dynamic_rpt_id" readonly="1" invisible="1"/>
+                                    <field name="field_name" required="1"/>
+                                    <field name="operator" required="1"/>
+                                    <field name="value" required="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </group>
+
+                <button special="cancel" string="Cancel" icon="" class="oe_link"/>
+                <button name="get_xls" string="Export" type="object" icon="fa-download" default_focus="1"
+                        class="oe_highlight"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dynamic_xls_report" model="ir.actions.act_window">
+        <field name="name">Dynamic Reports</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">dynamic.xls.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="dynamic_xls_report_tree"/>
+        <field name="context">
+            {'form_view_ref':'dynamic_xls_report_form'}
+        </field>
+
+    </record>
+
+    <menuitem action="action_dynamic_xls_report"
+              id="menu_dynamic_xls_report"
+              name="Dynamic Report"
+              sequence="6"
+    />
+</odoo>
