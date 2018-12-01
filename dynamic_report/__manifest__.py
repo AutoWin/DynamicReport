@@ -5,8 +5,7 @@
     "author": "Luong Thanh",
     "category": "Custom",
     "description": """
-    This Module can be used to export the XLS reports of the choosen objects using different parameters
-
+        This Module can be exported all applications to excel
     """,
     "depends": [
         'base',
