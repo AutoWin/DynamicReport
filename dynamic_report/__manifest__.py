@@ -5,7 +5,7 @@
     "author": "Luong Thanh",
     "category": "Custom",
     "description": """
-        This Module can be exported all applications to excel
+        This Module to export all applications to excel
     """,
     "depends": [
         'base',
