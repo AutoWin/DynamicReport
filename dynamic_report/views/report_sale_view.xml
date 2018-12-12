@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="solt_report_preview_form_view">
+        <field name="name">sale.order.report.preview.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[1]" position="after">
+                <page string="Report Preview">
+                    <header>
+                        <button name="generate_preview" type="object" string="Preview"/>
+                    </header>
+                    <sheet>
+                        <field name="preview"/>
+                    </sheet>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

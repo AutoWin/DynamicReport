@@ -14,7 +14,7 @@
     "data": [
         'views/webclient_templates.xml',
     ],
-    'js': [],
+    'js': ['static/src/js/report/qwebactionmanager.js'],
     'qweb': [],
     'css': [],
     'installable': True,
