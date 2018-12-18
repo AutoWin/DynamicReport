@@ -21,17 +21,17 @@ class dynamic_xls_report(models.TransientModel):
     def get_xls(self):
         self.ensure_one()
         context = self._context
-        print (context)
+        # print (context)
         model = self.model_name.model
-        print(model)
+        # print(model)
         field_sel = []
         for field_name in self.field_name:
             field_sel.append(field_name.name)
-        print (field_sel)
+        # print (field_sel)
         domain = []
         for d_line in self.domain_lines:
             temp = ()
-            print (type(temp))
+            # print (type(temp))
             d_val = str(d_line.value) or False
             if d_val in ('false', 'False'):
                 d_val = False
@@ -39,19 +39,15 @@ class dynamic_xls_report(models.TransientModel):
                 d_val = True
             temp = (str(d_line.field_name.name), str(d_line.operator), d_val)
             domain.append(temp)
-        print ('Domain: ', domain)
+        # print ('Domain: ', domain)
         datas = {'ids': context.get('active_ids', [])}
         datas['model'] = 'dynamic.xls.report'
         datas['form'] = self.read()[0]
         for field in datas['form'].keys():
             if isinstance(datas['form'][field], tuple):
                 datas['form'][field] = datas['form'][field][0]
-        print (datas)
+        # print (datas)
         if context.get('xls_export'):
-            print ('runrun')
-            # mod_ids = self.env[model].browse([2])
-            # print (mod_ids)
-            # return self.env.ref('dynamic_report.dynamic_stock_xlsx').report_action(mod_ids)
             return self.env.ref('dynamic_report.dynamic_stock_xlsx').report_action(self, data=datas)
 
 class dynamic_domain_line(models.TransientModel):

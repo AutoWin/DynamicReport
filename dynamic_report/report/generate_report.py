@@ -12,7 +12,7 @@ class GenerateReport(models.AbstractModel):
     def generate_xlsx_report(self, workbook, data, lines):
         # print (data)
         form = data.get('form', False)
-        print(form)
+        # print(form)
         # List field name selected
         field_name = form.get('field_name', False)
         # print(type(field_name))
@@ -20,7 +20,7 @@ class GenerateReport(models.AbstractModel):
         for item in field_name:
             f_name = self.env['ir.model.fields'].browse(item).name
             field_sel.append(f_name)
-        print(field_sel)
+        # print(field_sel)
         # Domain
         domain = []
         domain_lines = self.env['dynamic.domain.line'].browse(form.get('domain_lines', False))
@@ -57,6 +57,7 @@ class GenerateReport(models.AbstractModel):
         sheet.set_header(header)
         sheet.merge_range(1, 7, 2, 10, str(model_name) + ' Report', format0)
         user = self.env['res.users'].browse(self.env.uid)
+        # print (user.tz)
         tz = pytz.timezone(user.tz)
         time = pytz.utc.localize(datetime.now()).astimezone(tz)
         sheet.merge_range('A5:G5', 'Report Date: ' + str(time.strftime("%Y-%m-%d %H:%M %p")), format1)
