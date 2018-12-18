@@ -18,7 +18,6 @@
     ],
     "data": [
         'views/dynamic_report_view.xml',
-        # 'views/report_sale_view.xml',
     ],
     'js': [],
     'qweb': [],

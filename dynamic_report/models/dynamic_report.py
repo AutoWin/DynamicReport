@@ -47,20 +47,12 @@ class dynamic_xls_report(models.TransientModel):
             if isinstance(datas['form'][field], tuple):
                 datas['form'][field] = datas['form'][field][0]
         print (datas)
-        # datas = {'ids': [], 'model': 'wizard.stock.history', 'form': {'id': 3, 'warehouse': [2], 'category': [3], 'create_uid': 1, 'create_date': '2018-12-04 07:17:42', 'write_uid': 1, 'write_date': '2018-12-04 07:17:42', 'display_name': 'wizard.stock.history,3', '__last_update': '2018-12-04 07:17:42'}}
         if context.get('xls_export'):
             print ('runrun')
             # mod_ids = self.env[model].browse([2])
             # print (mod_ids)
             # return self.env.ref('dynamic_report.dynamic_stock_xlsx').report_action(mod_ids)
             return self.env.ref('dynamic_report.dynamic_stock_xlsx').report_action(self, data=datas)
-
-    # @api.multi
-    # def print_custom_documents(self):
-    #     first_report = self.env.ref('custom_module.billing_report_sample').report_action(self)
-    #     return first_report
-    #     invoice_obj = self.env['stock.inventory'].browse([1])
-    #     return self.env.ref('stock.action_report_inventory').report_action(invoice_obj)
 
 class dynamic_domain_line(models.TransientModel):
     _name = 'dynamic.domain.line'

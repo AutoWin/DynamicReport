@@ -72,10 +72,10 @@
     <report
             id="dynamic_stock_xlsx"
             model="dynamic.xls.report"
-            string="Product Stock Info"
+            string="Dynamic Report"
             report_type="xlsx"
-            name="dynamic_report.stock_report_xls.xlsx"
-            file="dynamic_report.stock_report_xls.xlsx"
+            name="dynamic_report.generate_report"
+            file="dynamic_report.generate_report"
             menu="False"
             attachment_use="False"
     />
